@@ -1,17 +1,575 @@
-.size(@w, @h:@w) {
-	width: round(@w,1);
-	height: round(@h,1);
-}
-.padding(@1,@2,@3,@4,@main-value){
-padding:round((@1/@main-value)*1em,1) 
-round((@2/@main-value)*1em,1) 
-round((@3/@main-value)*1em,1) 
-round((@4/@main-value)*1em,1) ;
+.size(@w,@h:@w) {
+	width: @w;
+	height: @h;
 }
 
-.flex-j-a(@value,@value){
+//-----------mixins flex-----------//
+
+.flex-a-j(@alignItems,@justifyContent){
 	display: flex;
-	justify-content: @value;
-	align-items:@value;
+	align-items: @alignItems;
+	justify-content: @justifyContent;
 }
 
+.flex-a-j-d(@alignItems,@justifyContent,@direction){
+	display: flex;
+	align-items: @alignItems;
+	justify-content: @justifyContent;
+	flex-direction:@direction;
+}
+
+//---------------------------------//
+
+.center(@position) when(@position = x){
+	position: absolute;
+	top: 50%;
+	  -webkit-transform: translateY(-50%);
+	  -ms-transform: translateY(-50%);
+	  transform: translateY(-50%);
+}
+.center(@position) when(@position = y){
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translate(-50%);
+}
+
+.center(@position) when(@position = xy){
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+//--------------text----------------//
+
+.blurText(@value,@color) {
+	color: transparent;
+	text-shadow: 0 0 @value @color;
+}
+
+//----------------media------------------//
+//settings variable!!!
+.media(@size,@value) when(@size = xll) {
+	@media only screen and (max-width:~'@{xll}px'){ 
+		@value();
+	}
+}
+.media(@size,@value) when(@size = xl ) {
+	@media only screen and (max-width:~'@{xl}px'){
+		@value();
+	}
+}
+.media(@size,@value) when(@size = lg) {
+	@media only screen and (max-width:~'@{lg}px'){
+		@value();
+	}
+}
+.media(@size,@value) when(@size = md) {
+	@media only screen and (max-width:~'@{md}px'){
+		@value();
+	}
+}
+.media(@size,@value) when(@size = sm) {
+	@media only screen and (max-width:~'@{sm}px'){
+		@value();
+	}
+}
+
+// .font-size-adaptiv позволяет делать адптивным шрифт включает в себя 4 параметра 
+// @font-size-max-максимальный размер шрифта от которого пойдет уменьшение
+// @font-size-min-манимальный размер который нужно получить при определенном размере экрана 
+// @max-conteiner-максимальный размер контейнера от которого пойдет увелечение шрифта или уменьшение
+// @min-conteiner-минимальный размер контейнера на котором будет минимальная ширина текста 
+
+.font-size-adaptiv(@font-size-max, @font-size-min, @max-conteiner, @min-conteiner) when(isnumber(@font-size-max)) {
+	font-size: calc(@font-size-min + (unit(@font-size-max) - unit(@font-size-min)) * ~"(100vw - @{min-conteiner})"/ (unit(@max-conteiner) - unit(@min-conteiner)));
+}
+
+//Миксин .font() включает в себя 5 параметров @font-size, @line-height, @font-family, @color, @text-align.
+//В начале всегда пишим font-size и от него решаем сколько и каком порядке распологать свойсва максимум 5 свойств минимум 2 .
+//
+//---------------------------5 параметров----------------------------
+//---------------------------1 БЛОК----------------------------------
+.font(@font-size, @line-height, @font-family, @color, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @line-height, @color, @font-family, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @line-height, @color, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @color, @line-height, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @line-height, @font-family, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @font-family, @line-height, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @line-height, @font-family, @color, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+//---------------------------2 БЛОК----------------------------------
+.font(@font-size, @line-height, @font-family, @text-align, @color ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @line-height, @color, @text-align, @font-family ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @line-height, @text-align, @color ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @color, @text-align, @line-height ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @line-height, @text-align, @font-family) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @font-family, @text-align, @line-height ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+//---------------------------3 БЛОК----------------------------------
+.font(@font-size, @line-height, @text-align, @font-family , @color) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @line-height, @text-align, @color, @font-family ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @text-align, @color, @line-height) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @text-align, @line-height, @color ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @text-align, @line-height , @font-family) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @text-align, @font-family, @line-height) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+//---------------------------4 БЛОК----------------------------------
+.font(@font-size, @text-align, @line-height, @font-family, @color) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @line-height, @color, @font-family ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @font-family, @line-height, @color) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @font-family, @color, @line-height) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @color, @line-height, @font-family ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @color, @font-family, @line-height ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+//---------------------------4 параметра------------------------------
+//---------------------------1 БЛОК-----------------------------------
+
+.font(@font-size, @line-height, @font-family, @color) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+}
+
+.font(@font-size, @line-height, @color, @font-family) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	font-family: @font-family;
+}
+
+.font(@font-size, @font-family, @line-height, @color) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+}
+
+.font(@font-size, @font-family, @color, @line-height ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+}
+
+.font(@font-size, @color, @font-family, @line-height ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+}
+
+.font(@font-size, @color, @line-height, @font-family ) when(isnumber(@line-height)) and (isstring(@font-family)) and (iscolor(@color)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+}
+
+//---------------------------2 БЛОК-----------------------------------
+.font(@font-size, @text-align, @font-family, @color) when(isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @color, @font-family ) when(isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @text-align, @color) when(isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @color, @text-align) when(isstring(@font-family)) and (iscolor(@color))and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @font-family, @text-align ) when(isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @text-align, @font-family) when(isstring(@font-family)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+	text-align: @text-align;
+}
+
+//---------------------------3 БЛОК-----------------------------------
+.font(@font-size, @line-height, @text-align, @color) when(isnumber(@line-height)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color , @text-align, @line-height ) when(isnumber(@line-height)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @color, @line-height) when(isnumber(@line-height)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @line-height, @color, @text-align ) when(isnumber(@line-height)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	text-align: @text-align;
+
+}
+
+.font(@font-size, @text-align , @line-height, @color) when(isnumber(@line-height)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @color, @line-height, @text-align) when(isnumber(@line-height)) and (iscolor(@color)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	text-align: @text-align;
+}
+
+//---------------------------4 БЛОК-----------------------------------
+.font(@font-size, @line-height, @font-family, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @line-height, @text-align) when(isnumber(@line-height)) and (isstring(@font-family)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @font-family, @line-height) when(isnumber(@line-height)) and (isstring(@font-family)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	text-align: @text-align;
+}
+
+.font(@font-size, @font-family, @text-align , @line-height) when(isnumber(@line-height)) and (isstring(@font-family)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	text-align: @text-align;
+}
+
+.font(@font-size, @line-height, @text-align, @font-family) when(isnumber(@line-height)) and (isstring(@font-family)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align , @line-height, @font-family) when(isnumber(@line-height)) and (isstring(@font-family)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	text-align: @text-align;
+}
+
+//-----------------------------3 параметра----------------------------
+//---------------------------1 БЛОК-----------------------------------
+.font(@font-size, @line-height, @font-family) when(isnumber(@line-height)) and (isstring(@font-family)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+}
+
+.font(@font-size, @font-family, @line-height ) when(isnumber(@line-height)) and (isstring(@font-family)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+}
+
+.font(@font-size, @line-height, @color) when(isnumber(@line-height)) and (iscolor(@color)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+}
+
+.font(@font-size, @color, @line-height) when(isnumber(@line-height)) and (iscolor(@color)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+}
+
+.font(@font-size, @line-height, @text-align) when(isnumber(@line-height)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @line-height) when(isnumber(@line-height)) and (iskeyword(@text-align)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+	text-align: @text-align;
+}
+
+//---------------------------2 БЛОК-----------------------------------
+
+.font(@font-size, @font-family, @color ) when(isstring(@font-family)) and (iscolor(@color)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+}
+
+.font(@font-size, @color, @font-family ) when(isstring(@font-family)) and (iscolor(@color)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	color: @color;
+}
+
+.font(@font-size, @font-family, @text-align ) when(isstring(@font-family)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @font-family ) when(isstring(@font-family)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+	text-align: @text-align;
+}
+
+
+//---------------------------3 БЛОК-----------------------------------
+.font(@font-size, @color, @text-align ) when(iscolor(@color)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	text-align: @text-align;
+}
+
+.font(@font-size, @text-align, @color ) when(iscolor(@color)) and (iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+	text-align: @text-align;
+}
+
+//--------------------------------------------------------------------
+//---------------------------2 параметра------------------------------
+.font(@font-size, @line-height) when(isnumber(@line-height)) {
+	line-height: round((@line-height/@font-size)*1em, 1);
+	font-size: unit((@font-size/10), rem);
+}
+
+.font(@font-size, @font-family ) when(isstring(@font-family)) {
+	font-size: unit((@font-size/10), rem);
+	font-family: @font-family;
+}
+
+.font(@font-size, @color ) when(iscolor(@color)) {
+	font-size: unit((@font-size/10), rem);
+	color: @color;
+}
+
+.font(@font-size, @text-align ) when(iskeyword(@text-align)) {
+	font-size: unit((@font-size/10), rem);
+	text-align: @text-align;
+}
+
+.font(@font-size,) when(isnumber(@font-size)) {
+	font-size: unit((@font-size/10), rem);
+}
