@@ -1,0 +1,332 @@
+{
+	//---------common----------//
+	"position-absolute": {
+		"scope": "less,scss,css",
+		"prefix": "paa",
+		"body": [
+			"position:absolute;",
+			"top:$1;",
+			"left:$2;$3"
+		],
+	},
+	"position-relative": {
+		"scope": "less,scss,css",
+		"prefix": "prr",
+		"body": [
+			"position:relative;",
+			"top:$1;",
+			"left$3:$2;",
+		],
+	},
+	"margin-2": {
+		"scope": "less,scss,css",
+		"prefix": "m2",
+		"body": [
+			"margin:$1px $2px;",
+		],
+	},
+	"margin-4": {
+		"scope": "less,scss,css",
+		"prefix": "m4",
+		"body": [
+			"margin:$1px $2px $3px $4px;",
+		],
+	},
+	"before": {
+		"scope": "less,scss,css",
+		"prefix": "before",
+		"body": [
+			"$1::before{",
+			"content:'';$4",
+			"position:absolute;",
+			"top:0$2;",
+			"left:0$3;",
+			"}",
+		],
+	},
+	"after": {
+		"scope": "less,scss,css",
+		"prefix": "after",
+		"body": [
+			"$1::after{",
+			"",
+			"content:'';$4",
+			"position:absolute;",
+			"top:0$2;",
+			"left:0$3;",
+			"}",
+		],
+	},
+	//---------less----------//
+	"position-centerLess": {
+		"scope": "less",
+		"prefix": "pcenter",
+		"body": [
+			".center($1);"
+		],
+	},
+	"mediaLess": {
+		"scope": "less",
+		"prefix": "media",
+		"body": [
+			".media($1,{",
+				"",
+			"});",
+		],
+	},
+	"containerLess": {
+		"scope": "less",
+		"prefix": "excont",
+		"body": [
+			"&:extend(.container);"
+		],
+	},
+	"blur_textLess": {
+		"scope": "less",
+		"prefix": "blur-text",
+		"body": [
+			".blurText($1,$2);"
+		],
+	},
+	"flex-align-juscityLess": {
+		"scope": "less",
+		"prefix": "faj",
+		"body": [
+			".flex-a-j($1,$2);",
+		],
+	},
+	"flex-align-juscity-directionLess": {
+		"scope": "less",
+		"prefix": "fajd",
+		"body": [
+			".flex-a-j-d($1,$2,$3);"
+		],
+	},
+	"backgroundLess": {
+		"scope": "less",
+		"prefix": "bg",
+		"body": [
+			"background:url(\"@{way-img}/$2\")$3 no-repeat center/cover;",
+		],
+	},
+	"extend-position-relativeLess": {
+		"scope": "less",
+		"prefix": "expr",
+		"body": [
+			"&:extend(.pos-rel);",
+		],
+	},
+	"extend-position-absoluteLess": {
+		"scope": "less",
+		"prefix": "expa",
+		"body": [
+			"&:extend(.pos-abs);",
+		],
+	},
+	"width-heightLess": {
+		"scope": "less",
+		"prefix": "si",
+		"body": [
+			".size($1,$2);",
+		],
+	},
+	//---------scss----------//
+	"position-centerScss": {
+		"scope": "scss",
+		"prefix": "pcenter",
+		"body": [
+			"@include center($1);"
+		],
+	},
+	"mediaScss": {
+		"scope": "scss",
+		"prefix": "media",
+		"body": [
+			"@include media($1){",
+			"$2",
+			"}",
+		],
+	},
+	"containerScss": {
+		"scope": "scss",
+		"prefix": "excont",
+		"body": [
+			"@extend %container;"
+		],
+	},
+	"blur_textScss": {
+		"scope": "scss",
+		"prefix": "blur-text",
+		"body": [
+			"@include blurText($1,$2);"
+		],
+	},
+	"fontScss": {
+		"scope": "scss",
+		"prefix": "font",
+		"body": [
+			"@include font($1,$2,$3,$4);",
+		],
+	},
+	"position-absScss": {
+		"scope": "scss",
+		"prefix": "expa",
+		"body": [
+			"@extend %pos-abs;",
+		],
+	},
+	"position-relScss": {
+		"scope": "scss",
+		"prefix": "expr",
+		"body": [
+			"@extend %pos-rel;",
+		],
+	},
+	"flex-centerScss": {
+		"scope": "scss",
+		"prefix": "fc",
+		"body": [
+			"@extend %flexCenter;",
+		],
+	},
+	"backgroundScss": {
+		"scope": "scss",
+		"prefix": "bg",
+		"body": [
+			"background:url(\"#{$1'$'way-img}$2\")$3 no-repeat center/cover;",
+		],
+	},
+	"flex-align-justifyScss": {
+		"scope": "scss",
+		"prefix": "faj",
+		"body": [
+			"@include flex-a-j($1,$2);",
+		],
+	},
+	
+	"flex-align-juscity-directioScss": {
+		"scope": "scss",
+		"prefix": "fajd",
+		"body": [
+			"@include flex-a-j-d($1,$2,$3);"
+		],
+	},
+	"sizeScss": {
+		"scope": "scss",
+		"prefix": "si",
+		"body": [
+			"@include size($1,$2);",
+		],
+	},
+
+	//---------html----------//
+	"ul": {
+		"scope": "html",
+		"prefix": "ul",
+		"body": [
+			"<ul class=\"$1__list\">",
+			"<li class=\"$2__item\">$4",
+			"<a class=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li class=\"$2__item\">",
+			"<a class=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li class=\"$2__item\">",
+			"<a class=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li class=\"$2__item\">",
+			"<a class=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li class=\"$2__item\">",
+			"<a class=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li class=\"$2__item\">",
+			"<a class=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"</ul>",
+		],
+	},
+	"column": {
+		"scope": "html",
+		"prefix": "column",
+		"body": [
+			"<div class=\"$1__wrapper\">",
+			"$6<div class=\"$1__column\">",
+			"<$2 class=\"$3\"></$2>",
+			"<$4 class=\"$5\"></$4>",
+			"",
+			"</div>",
+			"",
+			"<div class=\"$2__column\">",
+			"<$2 class=\"$3\"></$2>",
+			"<$4 class=\"$5\"></$4>",
+			"</div>",
+			"",
+			"<div class=\"$2__column\">",
+			"<$2 class=\"$3\"></$2>",
+			"<$4 class=\"$5\"></$4>",
+			"</div>",
+			"</div>",
+		],
+	},
+	//---------React----------//
+	"ul": {
+		"scope": "javascriptreact",
+		"prefix": "ul",
+		"body": [
+			"<ul className=\"$1__list\">",
+			"<li className=\"$2__item\">$4",
+			"<a className=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li className=\"$2__item\">",
+			"<a className=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li className=\"$2__item\">",
+			"<a className=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li className=\"$2__item\">",
+			"<a className=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li className=\"$2__item\">",
+			"<a className=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"",
+			"<li className=\"$2__item\">",
+			"<a className=\"$3__link\" href=\"#\"></a>",
+			"</li>",
+			"</ul>",
+		],
+	},
+	"column": {
+		"scope": "javascriptreact",
+		"prefix": "column",
+		"body": [
+			"<div className=\"$1__wrapper\">",
+			"$6<div className=\"$1__column\">",
+			"<$2 className=\"$3\"></$2>",
+			"<$4 className=\"$5\"></$4>",
+			"",
+			"</div>",
+			"",
+			"<div className=\"$2__column\">",
+			"<$2 className=\"$3\"></$2>",
+			"<$4 className=\"$5\"></$4>",
+			"</div>",
+			"",
+			"<div className=\"$2__column\">",
+			"<$2 className=\"$3\"></$2>",
+			"<$4 className=\"$5\"></$4>",
+			"</div>",
+			"</div>",
+		],
+	},
+}
