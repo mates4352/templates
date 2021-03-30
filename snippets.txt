@@ -1,5 +1,102 @@
 {
+
 	//---------common----------//
+	"flex-basis4": {
+		"scope": "less,scss,css",
+		"prefix": "fsb50",
+		"body": [
+			"flex:0 1 50%;",
+		],
+	},
+	"flex-basis3": {
+		"scope": "less,scss,css",
+		"prefix": "fsb33",
+		"body": [
+			"flex:0 1 33.333%;",
+		],
+	},
+	"flex-basis2": {
+		"scope": "less,scss,css",
+		"prefix": "fsb25",
+		"body": [
+			"flex:0 1 25%;",
+		],
+	},
+	"flex-basis1": {
+		"scope": "less,scss,css",
+		"prefix": "fsb",
+		"body": [
+			"flex:0 0 $1;",
+		],
+	},
+	"transform-rotate": {
+		"scope": "less,scss,css",
+		"prefix": "trr",
+		"body": [
+			"transform: rotate($1deg);",
+		],
+	},
+	"flex-direction": {
+		"scope": "less,scss,css",
+		"prefix": "fd",
+		"body": [
+			"flex-direction:$1;",
+		],
+	},
+	"transform-translate": {
+		"scope": "less,scss,css",
+		"prefix": "trtr",
+		"body": [
+			"transform: translate($1,$2);",
+		],
+	},
+	"transition": {
+		"scope": "less,scss,css",
+		"prefix": "tran",
+		"body": [
+			"transition: $1 500ms$2 ease;",
+		],
+	},
+		"notlast": {
+			"scope": "less,scss,css",
+			"prefix": "notl",
+			"body": [
+				"$1:not(:last-of-type){",
+				"margin-right:$2;",
+			"}",
+			],
+		},
+		"focus": {
+			"scope": "less,scss,css",
+			"prefix": "fos",
+			"body": [
+				"$1:focus{",
+				"}",
+			],
+		},
+		"active": {
+			"scope": "less,scss,css",
+			"prefix": "act",
+			"body": [
+				"$1:active{",
+				"}",
+			],
+		},
+	"hover": {
+		"scope": "less,scss,css",
+		"prefix": "hov",
+		"body": [
+			"$1:hover{",
+			"}",
+		],
+	},
+	"margin-auto": {
+		"scope": "less,scss,css",
+		"prefix": "mau",
+		"body": [
+			"margin: 0 auto;",
+		],
+	},
 	"position-absolute": {
 		"scope": "less,scss,css",
 		"prefix": "paa",
@@ -16,20 +113,6 @@
 			"position:relative;",
 			"top:$1;",
 			"left$3:$2;",
-		],
-	},
-	"margin-2": {
-		"scope": "less,scss,css",
-		"prefix": "m2",
-		"body": [
-			"margin:$1px $2px;",
-		],
-	},
-	"margin-4": {
-		"scope": "less,scss,css",
-		"prefix": "m4",
-		"body": [
-			"margin:$1px $2px $3px $4px;",
 		],
 	},
 	"before": {
@@ -140,10 +223,9 @@
 	},
 	"mediaScss": {
 		"scope": "scss",
-		"prefix": "media",
+		"prefix": "med",
 		"body": [
-			"@include media($1){",
-			"$2",
+			"@include media($1,$2){",
 			"}",
 		],
 	},
@@ -251,7 +333,7 @@
 			"</ul>",
 		],
 	},
-	"column": {
+	"column1": {
 		"scope": "html",
 		"prefix": "column",
 		"body": [

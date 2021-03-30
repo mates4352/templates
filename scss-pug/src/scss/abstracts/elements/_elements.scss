@@ -19,39 +19,74 @@
 
 %container{
 	//settings variable!!!
-	$xll-1:'#{$xll}px' - 1px;
-	$xl-1:'#{$xl}px' - 1px;
-	$lg-1:'#{$lg}px' - 1px;
-	$md-1:'#{$md}px' - 1px;
-	$sm-1:'#{$sm}px' - 1px;
+	$BrPoint1_1px:'#{$BrPoint1}px' - $number;
+	$BrPoint2_1px:'#{$BrPoint2}px' - $number ;
+	$BrPoint3_1px:'#{$BrPoint3}px' - $number ;
+	$BrPoint4_1px:'#{$BrPoint4}px' - $number ;
+	$BrPoint5_1px:'#{$BrPoint5}px' - $number ;
+	$BrPoint6_1px:'#{$BrPoint6}px' - $number ;
 
-	$ExtraExtraLarge: "#{$pointTarget}(#{$point}-width:#{$xll-1})";
-	$ExtraLarge: "#{$pointTarget}(#{$point}-width:#{$xl-1})";
-	$Large: "#{$pointTarget}(#{$point}-width:#{$lg-1})";
-	$Medium: "#{$pointTarget}(#{$point}-width:#{$md-1})";
-	$Small: "#{$pointTarget}(#{$point}-width:#{$sm-1})";
-
-	max-width:#{$pointMain}px;
-	padding:$pgMain;
+	max-width:#{$BrPoint1}px;
+	padding:$pgBrPoint1;
 	margin: 0 auto;
-
-	@media  #{$ExtraExtraLarge} {
-		border: 1px solid #000;
-		padding:$pgXll;
-		max-width:#{$xl}px;
+	
+	@media only screen and (#{$point}-width:#{$BrPoint1_1px}) {
+		@if $BrPoint1 > $BrPoint2{
+			$BrPoint1:$BrPoint2;
+			max-width:#{$BrPoint1}px;
+			padding:$pgBrPoint1;
+			margin: 0 auto;
+		}
+		@else{
+			max-width:#{$BrPoint1}px;
+			padding:$pgBrPoint1;
+			margin: 0 auto;
+		}
 	}
-	@media #{$ExtraLarge}{
-		padding:$pgXl;
-		max-width:#{$lg}px;
+	
+	@media only screen and (#{$point}-width:#{$BrPoint2_1px}) {
+		@if $BrPoint2 > $BrPoint3 {
+			$BrPoint2:$BrPoint3;
+			max-width:#{$BrPoint2}px;
+		}
+		@else{
+			max-width:#{$BrPoint2}px;
+			padding:$pgBrPoint2;
+		}
 	}
-	@media #{$Large}{
-		padding:$pgLg;
-		max-width:#{$md}px;
+	@media only screen and (#{$point}-width:#{$BrPoint3_1px}){
+		@if $BrPoint2 > $BrPoint4 {
+			$BrPoint3:$BrPoint4;
+			max-width:#{$BrPoint3}px;
+		}
+		@else{
+			max-width:#{$BrPoint3}px;
+			padding:$pgBrPoint3;
+		}
 	}
-	@media #{$Medium}{
-		padding:$pgMd;
-		max-width:#{$sm}px;
+	@media only screen and (#{$point}-width:#{$BrPoint4_1px}){
+		@if $BrPoint4 > $BrPoint5 {
+			$BrPoint4:$BrPoint5;
+			max-width:#{$BrPoint4}px;
+		}
+		@else{
+			max-width:#{$BrPoint4}px;
+			padding:$pgBrPoint4;
+		}
+	}
+	@media only screen and (#{$point}-width:#{$BrPoint5_1px}){
+		@if $BrPoint5 > $BrPoint6 {
+			$BrPoint5:$BrPoint6;
+			max-width:#{$BrPoint5}px;
+		}
+		@else{
+			max-width:#{$BrPoint5}px;
+			padding:$pgBrPoint5;
+		}
+	}
+	@media only screen and (#{$point}-width:#{$BrPoint6_1px}){
+		padding:$pgBrPoint6;
+		max-width:#{$BrPoint6}px;
 	}
 }
-
 
