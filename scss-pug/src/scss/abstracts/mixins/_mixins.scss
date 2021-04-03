@@ -23,13 +23,13 @@
 @mixin center($position) {
 	position: absolute;
 	
-	@if $position == 'x' {
+	@if $position == 'y' {
 	  top: 50%;
 	  -webkit-transform: translateY(-50%);
 	  -ms-transform: translateY(-50%);
 	  transform: translateY(-50%);
 	}
-	@else if $position == 'y' {
+	@else if $position == 'x' {
 	  left: 50%;
 	  -webkit-transform: translateX(-50%);
 	  -ms-transform: translateX(-50%);
@@ -51,11 +51,11 @@
 	text-shadow: 0 0 $value $color;
 }
 
-@mixin font($size:false,$lh:false,$weight:false,$colour:false) {
+@mixin font($size:false,$lh:false,$weight:false,$text-align:false) {
 	@if $size { font-size: $size; }
 	@if $lh { line-height: $lh; }
 	@if $weight { font-weight: $weight, }
-	@if $colour { color: $colour; }
+	@if $text-align {text-align: $text-align;}
  }
 
 //----------------media------------------//
@@ -74,3 +74,16 @@
 		}
 	}
 }
+
+@mixin font-face($font_name, $file_name, $weight, $style) {
+	@font-face {
+	font-family: $font_name;
+	font-display: swap;
+	src:url("../../assets/fonts/#{$file_name}.woff") format("woff"), 
+		url("../../assets/fonts/#{$file_name}.woff2") format("woff2");
+	font-weight: #{$weight};
+	font-style: #{$style};
+	}
+}
+
+

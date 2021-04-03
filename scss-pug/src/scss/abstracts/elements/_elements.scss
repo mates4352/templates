@@ -10,83 +10,78 @@
 	left: 0;
 }
 
-%flexCenter{
-	display: flex;
-	justify-content: center;
-	align-items:center;
-}
-
-
+$xll:1400px;
+$xl:1200px;
+$lg:992px;
+$md:768px;
+$sm:576px;
+$xs:320px;
+//----max container----//
 %container{
-	//settings variable!!!
-	$BrPoint1_1px:'#{$BrPoint1}px' - $number;
-	$BrPoint2_1px:'#{$BrPoint2}px' - $number ;
-	$BrPoint3_1px:'#{$BrPoint3}px' - $number ;
-	$BrPoint4_1px:'#{$BrPoint4}px' - $number ;
-	$BrPoint5_1px:'#{$BrPoint5}px' - $number ;
-	$BrPoint6_1px:'#{$BrPoint6}px' - $number ;
-
-	max-width:#{$BrPoint1}px;
-	padding:$pgBrPoint1;
+	max-width:1440px;
+	padding:0 20px;
 	margin: 0 auto;
-	
-	@media only screen and (#{$point}-width:#{$BrPoint1_1px}) {
-		@if $BrPoint1 > $BrPoint2{
-			$BrPoint1:$BrPoint2;
-			max-width:#{$BrPoint1}px;
-			padding:$pgBrPoint1;
-			margin: 0 auto;
-		}
-		@else{
-			max-width:#{$BrPoint1}px;
-			padding:$pgBrPoint1;
-			margin: 0 auto;
-		}
+	border: 1px solid #000;
+	//xll
+	@media screen and (max-width:$xll - 0.2px) {
+		max-width:$xl;
+		padding:0 20px;
 	}
-	
-	@media only screen and (#{$point}-width:#{$BrPoint2_1px}) {
-		@if $BrPoint2 > $BrPoint3 {
-			$BrPoint2:$BrPoint3;
-			max-width:#{$BrPoint2}px;
-		}
-		@else{
-			max-width:#{$BrPoint2}px;
-			padding:$pgBrPoint2;
-		}
+	//xl
+	@media screen and (max-width:$xl - 0.2px) {
+		max-width:$lg;
+		padding:0 20px;
 	}
-	@media only screen and (#{$point}-width:#{$BrPoint3_1px}){
-		@if $BrPoint2 > $BrPoint4 {
-			$BrPoint3:$BrPoint4;
-			max-width:#{$BrPoint3}px;
-		}
-		@else{
-			max-width:#{$BrPoint3}px;
-			padding:$pgBrPoint3;
-		}
+	//lg
+	@media screen and (max-width:$lg - 0.2px) {
+		max-width:$md;
+		padding:0 20px;
 	}
-	@media only screen and (#{$point}-width:#{$BrPoint4_1px}){
-		@if $BrPoint4 > $BrPoint5 {
-			$BrPoint4:$BrPoint5;
-			max-width:#{$BrPoint4}px;
-		}
-		@else{
-			max-width:#{$BrPoint4}px;
-			padding:$pgBrPoint4;
-		}
+	//md
+	@media screen and (max-width:$md - 0.2px) {
+		max-width:$sm;
+		padding:0 20px;
 	}
-	@media only screen and (#{$point}-width:#{$BrPoint5_1px}){
-		@if $BrPoint5 > $BrPoint6 {
-			$BrPoint5:$BrPoint6;
-			max-width:#{$BrPoint5}px;
-		}
-		@else{
-			max-width:#{$BrPoint5}px;
-			padding:$pgBrPoint5;
-		}
-	}
-	@media only screen and (#{$point}-width:#{$BrPoint6_1px}){
-		padding:$pgBrPoint6;
-		max-width:#{$BrPoint6}px;
+	//sm
+	@media screen and (max-width:$sm - 0.2px) {
+		max-width:$xs;
+		padding:0 20px;
 	}
 }
-
+//----min container----//
+// %container{
+// 	max-width:1440px;
+// 	padding:0 20px;
+// 	margin: 0 auto;
+// 	border: 1px solid #000;
+// 	//xs
+// 	@media screen and (min-width:$xs) {
+// 		max-width:$xs;
+// 		padding:0 20px;
+// 	}
+// 	//sm
+// 	@media screen and (min-width:$sm) {
+// 		max-width:$sm;
+// 		padding:0 20px;
+// 	}
+// 	//md
+// 	@media screen and (min-width:$md) {
+// 		max-width:$md;
+// 		padding:0 20px;
+// 	}
+// 	//lg
+// 	@media screen and (min-width:$lg) {
+// 		max-width:$lg;
+// 		padding:0 20px;
+// 	}
+// 	//xl
+// 	@media screen and (min-width:$xl) {
+// 		max-width:$xl;
+// 		padding:0 20px;
+// 	}
+// 	//xll
+// 	@media screen and (min-width:$xll) {
+// 		max-width:$xll;
+// 		padding:0 20px;
+// 	}
+// }

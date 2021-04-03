@@ -1,3 +1,14 @@
+@mixin font-face($font_name, $file_name, $weight, $style) {
+	@font-face {
+	font-family: $font_name;
+	font-display: swap;
+	src:url("../../assets/fonts/#{$file_name}.woff") format("woff"), 
+		url("../../assets/fonts/#{$file_name}.woff2") format("woff2");
+	font-weight: #{$weight};
+	font-style: #{$style};
+	}
+}
+
 @include font-face("Sfuid", "Sfuid-Bold", "700", "normal");
 @include font-face("Sfuid", "Sfuid-ExtraLargeBold", "800", "normal");
 @include font-face("Sfuid", "Sfuid-Light", "300", "normal");

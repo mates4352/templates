@@ -1,50 +1,12 @@
 //--------project settings----------//
-//breakpoints-element-%container
-$BrPoint1:320;//$pgBrPoint1
-$BrPoint2:576;//$pgBrPoint2
-$BrPoint3:768;//$pgBrPoint3
-$BrPoint4:1280;//$pgBrPoint4
-$BrPoint5:1440;//$pgBrPoint5
-$BrPoint6:1920;//$pgBrPoint6
-//breakpoints-@mixins-media
-$Breakpoints: (xs:320px, sm:576px, md:768px, lg:992px, xl:1200px,xll:1400,xxl:1920);
-
-//mobile first or desktop
-$point:'min';
-$number: 0px; //mobile == 0 desktop == -0.2
-
-//-----breakpoints padding-----//
-$pgBrPoint1:0 15px;//$BrPoint1
-$pgBrPoint2:0 35px;//$BrPoint2
-$pgBrPoint3:0 50px;//$BrPoint3
-$pgBrPoint4:0 70px;//$BrPoint4
-$pgBrPoint5:0 150px;//$BrPoint5
-$pgBrPoint6:0 390px;//$BrPoint6
+//breakpoints
+$Breakpoints: (xs:320px, sm:576px, md:768px, lg:992px, xl:1200px,xll:1400px);
 
 //-----body settings-----//
 $color:#fff;
 $font-weight:400;
 $min-width:320px;
-//------fonts-one------//
-//path
-$way-fonts: './../../assets/fonts/';
-// name font
-$font-family:'Montserrat';
-//type path name
-$Regular:'Montserrat-Regular';
-$Medium:'Montserrat-Medium';
-$SemiBold:'Montserrat-SemiBold';
-$Bold:'Montserrat-Bold';
-$ExtraBold:'Montserrat-ExtraBold';
-//------fonts-two------//
-// $name_two:'Montserrat';
-// $Regular_two:'Montserrat-Regular';
-// $Medium_two:'Montserrat-Medium';
-// $SemiBold_two:'Montserrat-SemiBold';
-// $Bold_two:'Montserrat-Bold';
-// $ExtraBold_two:'Montserrat-ExtraBold';
-
-//--------------------------------------//
+$font-family: "Sfuid";
 //path img
 $way-img: './../../../assets/images';
 
