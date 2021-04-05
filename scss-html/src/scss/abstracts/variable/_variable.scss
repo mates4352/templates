@@ -1,18 +1,19 @@
 //--------project settings----------//
 //breakpoints
-$Breakpoints: (xs:320px, sm:576px, md:768px, lg:992px, xl:1200px,xll:1400px);
+$xll:1440px;
+$xl:1100px;
+$lg:992px;
+$md:768px;
+$sm:576px;
+$xs:320px;
 
 //-----body settings-----//
-$color:#fff;
+$color:#000;
 $font-weight:400;
 $min-width:320px;
 $font-family: "Sfuid";
-//path img
-$way-img: './../../../assets/images';
 
 // color
-$colorLink:#5286EC;
-$colorSpan:#B3B3B3;
-$colorMain:#FC9B09;
-
+$colorMain:#FD665E;
+$secondary:#585858;
 
